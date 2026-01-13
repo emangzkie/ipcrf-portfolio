@@ -4,333 +4,824 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marny C. Bulac - Performance Portfolio 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        :root {
+            --primary-dark: #0a0e27;
+            --secondary-dark: #141b3d;
+            --accent-cyan: #00f5ff;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --glow-cyan: rgba(0, 245, 255, 0.4);
+            --glow-purple: rgba(139, 92, 246, 0.3);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #141b3d 100%);
-            color: #ffffff;
-            padding: 20px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--glow-cyan) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--glow-purple) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
+        }
+
         .container {
-            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
+
+        /* Header Section */
         header {
+            padding: 4rem 0 3rem;
             text-align: center;
-            padding: 40px 0;
-            border-bottom: 2px solid rgba(0, 245, 255, 0.3);
-            margin-bottom: 40px;
+            animation: slideDown 1s ease-out;
         }
-        .badge {
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-badge {
             display: inline-block;
-            padding: 8px 20px;
-            background: linear-gradient(135deg, #00f5ff, #8b5cf6);
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             border-radius: 50px;
-            font-size: 12px;
+            font-size: 0.85rem;
             font-weight: 600;
             letter-spacing: 2px;
-            margin-bottom: 20px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 30px var(--glow-cyan);
+            animation: glow 2s ease-in-out infinite;
         }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px var(--glow-cyan); }
+            50% { box-shadow: 0 0 40px var(--glow-cyan), 0 0 60px var(--glow-purple); }
+        }
+
         h1 {
-            font-size: 3rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
             font-weight: 900;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #00f5ff, #ffffff);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--text-primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
         }
+
         .subtitle {
-            font-size: 1.3rem;
-            color: #94a3b8;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 0.5rem;
         }
-        .position {
+
+        .position-title {
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Performance Summary Card */
+        .summary-card {
+            background: linear-gradient(135deg, var(--secondary-dark), rgba(20, 27, 61, 0.5));
+            border: 2px solid rgba(0, 245, 255, 0.2);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .rating-display {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .rating-score {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 6rem;
+            font-weight: 900;
+            color: var(--accent-green);
+            text-shadow: 0 0 40px var(--accent-green);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .rating-label {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-sublabel {
             font-size: 1rem;
-            color: #00f5ff;
+            color: var(--text-secondary);
+            text-transform: uppercase;
             letter-spacing: 2px;
         }
-        .rating-card {
-            background: rgba(20, 27, 61, 0.8);
-            border: 2px solid rgba(0, 245, 255, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 30px 0;
-            text-align: center;
-        }
-        .rating-score {
-            font-size: 5rem;
-            font-weight: 900;
-            color: #10b981;
-            margin-bottom: 10px;
-        }
-        .rating-label {
-            font-size: 1.8rem;
-            color: #00f5ff;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-        }
-        .info-grid {
+
+        .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
-        .info-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 15px;
+
+        .summary-item {
             text-align: center;
-        }
-        .info-label {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            margin-bottom: 5px;
-        }
-        .info-value {
-            font-size: 1.3rem;
-            color: #00f5ff;
-            font-weight: 600;
-        }
-        .kra-section {
-            margin: 40px 0;
+            padding: 1.5rem;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 20px;
-            padding: 30px;
-            border-left: 4px solid #00f5ff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
+
+        .summary-item:hover {
+            background: rgba(0, 245, 255, 0.05);
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+        }
+
+        .summary-item-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-item-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        /* KRA Sections */
+        .kra-section {
+            margin: 4rem 0;
+            animation: fadeIn 1s ease-out both;
+        }
+
+        .kra-section:nth-child(2) { animation-delay: 0.1s; }
+        .kra-section:nth-child(3) { animation-delay: 0.2s; }
+        .kra-section:nth-child(4) { animation-delay: 0.3s; }
+        .kra-section:nth-child(5) { animation-delay: 0.4s; }
+
         .kra-header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
             border-bottom: 2px solid rgba(0, 245, 255, 0.2);
         }
+
         .kra-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #00f5ff, #8b5cf6);
-            border-radius: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 900;
-        }
-        .kra-title {
-            flex: 1;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        .kra-score {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #10b981;
-        }
-        .objective {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 20px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             border-radius: 15px;
-            margin-bottom: 15px;
+            box-shadow: 0 10px 30px var(--glow-cyan);
         }
+
+        .kra-image-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .kra-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .kra-image-container:hover .kra-image {
+            transform: scale(1.05);
+        }
+
+        .kra-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10, 14, 39, 0.95), transparent);
+            padding: 2rem;
+            color: var(--text-primary);
+        }
+
+        .kra-image-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .kra-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex: 1;
+        }
+
+        .kra-score {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-green);
+            text-shadow: 0 0 20px var(--accent-green);
+        }
+
+        .objective-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .objective-card:hover {
+            background: rgba(0, 245, 255, 0.05);
+            border-left-color: var(--accent-purple);
+            transform: translateX(10px);
+        }
+
         .objective-title {
-            font-size: 1.05rem;
-            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
             line-height: 1.5;
         }
+
         .objective-meta {
             display: flex;
-            gap: 20px;
+            gap: 2rem;
             flex-wrap: wrap;
-            padding-top: 15px;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 0.9rem;
         }
-        .meta-item {
-            color: #94a3b8;
+
+        .meta-label {
+            color: var(--text-secondary);
+            font-weight: 500;
         }
+
         .meta-value {
-            color: #00f5ff;
+            color: var(--accent-cyan);
             font-weight: 600;
         }
-        .badge-success {
+
+        .performance-badge {
             display: inline-block;
-            padding: 5px 15px;
-            background: #10b981;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--accent-green), #059669);
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 40px 0 20px;
-            margin-top: 60px;
+            padding: 4rem 0 2rem;
+            margin-top: 6rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
-            font-size: 0.9rem;
         }
-        footer strong {
-            color: #00f5ff;
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-org {
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .rating-score {
+                font-size: 4rem;
+            }
+
+            .rating-label {
+                font-size: 1.5rem;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kra-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .kra-title {
+                font-size: 1.4rem;
+            }
+
+            .objective-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            margin: 6rem 0 4rem;
+            padding: 3rem 0;
+            border-top: 2px solid rgba(0, 245, 255, 0.2);
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .gallery-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .gallery-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 245, 255, 0.2);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 245, 255, 0.3);
+            border-color: var(--accent-cyan);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(10, 14, 39, 0.95), transparent);
+            color: var(--text-primary);
+            font-weight: 600;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Scroll reveal animation */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
 <body>
+    <div class="bg-animation"></div>
+    
     <div class="container">
         <header>
-            <div class="badge">IPCRF 2025</div>
+            <div class="header-badge">IPCRF 2025</div>
             <h1>MARNY C. BULAC</h1>
             <p class="subtitle">Performance Excellence Portfolio</p>
-            <p class="position">INFORMATION TECHNOLOGY OFFICER 1</p>
+            <p class="position-title">Information Technology Officer 1</p>
         </header>
 
-        <div class="rating-card">
-            <div class="rating-score">4.52</div>
-            <div class="rating-label">VERY SATISFACTORY</div>
-            <div style="color: #94a3b8;">Overall Performance Rating</div>
-            
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="info-label">Division</div>
-                    <div class="info-value">Mati City</div>
+        <div class="summary-card">
+            <div class="rating-display">
+                <div class="rating-score">4.52</div>
+                <div class="rating-label">Very Satisfactory</div>
+                <div class="rating-sublabel">Overall Performance Rating</div>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-item-label">Division</div>
+                    <div class="summary-item-value">Mati City</div>
                 </div>
-                <div class="info-item">
-                    <div class="info-label">Rating Period</div>
-                    <div class="info-value">Jan-Dec 2025</div>
+                <div class="summary-item">
+                    <div class="summary-item-label">Rating Period</div>
+                    <div class="summary-item-value">Jan-Dec 2025</div>
                 </div>
-                <div class="info-item">
-                    <div class="info-label">Department</div>
-                    <div class="info-value">DepEd</div>
+                <div class="summary-item">
+                    <div class="summary-item-label">Department</div>
+                    <div class="summary-item-value">DepEd</div>
                 </div>
-                <div class="info-item">
-                    <div class="info-label">KRA Categories</div>
-                    <div class="info-value">5 Areas</div>
+                <div class="summary-item">
+                    <div class="summary-item-label">KRA Categories</div>
+                    <div class="summary-item-value">5 Areas</div>
                 </div>
             </div>
         </div>
 
-        <div class="kra-section">
+        <!-- KRA Section A -->
+        <section class="kra-section">
+            <div class="kra-image-container">
+                <img src="server-rack-1.jpg" alt="ICT Infrastructure Management - Server Rack" class="kra-image">
+                <div class="kra-image-overlay">
+                    <div class="kra-image-label">Key Result Area A</div>
+                </div>
+            </div>
+            
             <div class="kra-header">
                 <div class="kra-icon">A</div>
-                <div class="kra-title">ICT System & Infrastructure Management</div>
+                <h2 class="kra-title">ICT System & Infrastructure Management</h2>
                 <div class="kra-score">4.5</div>
             </div>
-            <div class="objective">
-                <div class="objective-title">Managed and coordinated the implementation of ICT programs and projects in the division, schools and learning centers</div>
-                <div class="objective-meta">
-                    <span class="meta-item">Weight: <span class="meta-value">15%</span></span>
-                    <span class="meta-item">Rating: <span class="meta-value">4.5/5.0</span></span>
-                    <span class="badge-success">Exceptional Performance</span>
-                </div>
-            </div>
-            <div class="objective">
-                <div class="objective-title">Provided administration and management of the network infrastructure of the Division Office</div>
-                <div class="objective-meta">
-                    <span class="meta-item">Weight: <span class="meta-value">10%</span></span>
-                    <span class="meta-item">Rating: <span class="meta-value">4.5/5.0</span></span>
-                    <span class="badge-success">Outstanding Quality</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="kra-section">
+            <div class="objective-card">
+                <h3 class="objective-title">Managed and coordinated the implementation of ICT programs and projects in the division, schools and learning centers to ensure that these projects meet the development objectives through participation and collaboration among stakeholders and implementers</h3>
+                <div class="objective-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Weight:</span>
+                        <span class="meta-value">15%</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Rating:</span>
+                        <span class="meta-value">4.5/5.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="performance-badge">Exceptional Performance</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="objective-card">
+                <h3 class="objective-title">Provided administration and management of the network infrastructure of the Division Office</h3>
+                <div class="objective-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Weight:</span>
+                        <span class="meta-value">10%</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Rating:</span>
+                        <span class="meta-value">4.5/5.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="performance-badge">Outstanding Quality</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KRA Section B -->
+        <section class="kra-section">
+            <div class="kra-image-container">
+                <img src="server-rack-2.jpg" alt="IT Programs Implementation - Infrastructure" class="kra-image">
+                <div class="kra-image-overlay">
+                    <div class="kra-image-label">Key Result Area B</div>
+                </div>
+            </div>
+            
             <div class="kra-header">
                 <div class="kra-icon">B</div>
-                <div class="kra-title">IT Programs & Projects Implementation</div>
+                <h2 class="kra-title">IT Programs & Projects Implementation</h2>
                 <div class="kra-score">4.5</div>
             </div>
-            <div class="objective">
-                <div class="objective-title">Formulated plans to ensure the strategic development and use of ICT in the division, schools and learning centers</div>
-                <div class="objective-meta">
-                    <span class="meta-item">Weight: <span class="meta-value">5%</span></span>
-                    <span class="meta-item">Rating: <span class="meta-value">4.5/5.0</span></span>
-                    <span class="badge-success">Strategic Excellence</span>
-                </div>
-            </div>
-            <div class="objective">
-                <div class="objective-title">Provided technical assistance to the LR management division in content development and learning resources</div>
-                <div class="objective-meta">
-                    <span class="meta-item">Weight: <span class="meta-value">15%</span></span>
-                    <span class="meta-item">Rating: <span class="meta-value">5.0/5.0</span></span>
-                    <span class="badge-success">Perfect Score</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="kra-section">
+            <div class="objective-card">
+                <h3 class="objective-title">Formulated plans to ensure the strategic development and use of ICT in the division, schools and learning centers through an identification of ICT needs and alignment with the goals and objectives of the division, region and national office</h3>
+                <div class="objective-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Weight:</span>
+                        <span class="meta-value">5%</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Rating:</span>
+                        <span class="meta-value">4.5/5.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="performance-badge">Strategic Excellence</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="objective-card">
+                <h3 class="objective-title">Provided technical assistance to the LR management division in the efficient and effective harvesting of content, development of learning resources to ensure that learning resources are compliant to the technical standards and accessible to schools and learning centers</h3>
+                <div class="objective-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Weight:</span>
+                        <span class="meta-value">15%</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Rating:</span>
+                        <span class="meta-value">5.0/5.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="performance-badge">Perfect Score</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KRA Section C -->
+        <section class="kra-section">
+            <div class="kra-image-container">
+                <img src="kra_c.png" alt="Technical Assistance to Schools" class="kra-image">
+                <div class="kra-image-overlay">
+                    <div class="kra-image-label">Key Result Area C</div>
+                </div>
+            </div>
+            
             <div class="kra-header">
                 <div class="kra-icon">C</div>
-                <div class="kra-title">Technical Assistance to Schools</div>
+                <h2 class="kra-title">Technical Assistance to Schools</h2>
                 <div class="kra-score">4.1</div>
             </div>
-            <div class="objective">
-                <div class="objective-title">Capacitated schools and learning centers on ICT Program Implementation - DCP deployment, Comlab training, and ICT Training plans</div>
+
+            <div class="objective-card">
+                <h3 class="objective-title">Capacitated schools and learning centers on ICT Program Implementation - Assisted in the deployment of DCP, trained Comlab in-charge and helped ICT Coordinator prepare a school ICT Training plan</h3>
                 <div class="objective-meta">
-                    <span class="meta-item">Weight: <span class="meta-value">15%</span></span>
-                    <span class="meta-item">Rating: <span class="meta-value">4.1/5.0</span></span>
-                    <span class="badge-success">High Impact</span>
+                    <div class="meta-item">
+                        <span class="meta-label">Weight:</span>
+                        <span class="meta-value">15%</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Rating:</span>
+                        <span class="meta-value">4.1/5.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="performance-badge">High Impact</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="kra-section">
+        <!-- KRA Section D -->
+        <section class="kra-section">
+            <div class="kra-image-container">
+                <img src="monitoring-system-1.jpg" alt="ICT Monitoring & Evaluation System" class="kra-image">
+                <div class="kra-image-overlay">
+                    <div class="kra-image-label">Key Result Area D</div>
+                </div>
+            </div>
+            
             <div class="kra-header">
                 <div class="kra-icon">D</div>
-                <div class="kra-title">ICT Monitoring & Evaluation</div>
+                <h2 class="kra-title">ICT Monitoring & Evaluation</h2>
                 <div class="kra-score">4.5</div>
             </div>
-            <div class="objective">
-                <div class="objective-title">Coordinated with Regional and National ICT on monitoring and evaluation programs</div>
-                <div class="objective-meta">
-                    <span class="meta-item">Weight: <span class="meta-value">10%</span></span>
-                    <span class="meta-item">Rating: <span class="meta-value">5.0/5.0</span></span>
-                    <span class="badge-success">Perfect Score</span>
-                </div>
-            </div>
-            <div class="objective">
-                <div class="objective-title">Conducted Monitoring and Evaluation on ICT Integration across 70 schools</div>
-                <div class="objective-meta">
-                    <span class="meta-item">Weight: <span class="meta-value">10%</span></span>
-                    <span class="meta-item">Rating: <span class="meta-value">4.0/5.0</span></span>
-                    <span class="badge-success">Wide Reach</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="kra-section">
+            <div class="objective-card">
+                <h3 class="objective-title">Coordinated with the Regional ICT and ICT Service at the national level on the monitoring and evaluation of ICT programs and projects to ensure effective feedback, work integration and collaboration through adherence to the reporting and coordination mechanisms that are established</h3>
+                <div class="objective-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Weight:</span>
+                        <span class="meta-value">10%</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Rating:</span>
+                        <span class="meta-value">5.0/5.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="performance-badge">Perfect Score</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="objective-card">
+                <h3 class="objective-title">Conducted Monitoring and Evaluation on ICT Integration and DCP equipment utilization and maintenance across 70 schools</h3>
+                <div class="objective-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Weight:</span>
+                        <span class="meta-value">10%</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Rating:</span>
+                        <span class="meta-value">4.0/5.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="performance-badge">Wide Reach</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KRA Section E -->
+        <section class="kra-section">
+            <div class="kra-image-container">
+                <img src="monitoring-system-2.jpg" alt="Partnerships & Stakeholder Management - Monitoring" class="kra-image">
+                <div class="kra-image-overlay">
+                    <div class="kra-image-label">Key Result Area E</div>
+                </div>
+            </div>
+            
             <div class="kra-header">
                 <div class="kra-icon">E</div>
-                <div class="kra-title">Partnerships & Stakeholder Management</div>
+                <h2 class="kra-title">Partnerships & Stakeholder Management</h2>
                 <div class="kra-score">4.3</div>
             </div>
-            <div class="objective">
-                <div class="objective-title">Managed and coordinated with stakeholders to mobilize ICT resources and services</div>
+
+            <div class="objective-card">
+                <h3 class="objective-title">Managed and coordinated with different stakeholders and partners to ensure that resources for ICT are mobilized, services from partner providers and suppliers are efficiently delivered through set standards and policies</h3>
                 <div class="objective-meta">
-                    <span class="meta-item">Weight: <span class="meta-value">10%</span></span>
-                    <span class="meta-item">Rating: <span class="meta-value">4.1/5.0</span></span>
-                    <span class="badge-success">Strong Coordination</span>
+                    <div class="meta-item">
+                        <span class="meta-label">Weight:</span>
+                        <span class="meta-value">10%</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Rating:</span>
+                        <span class="meta-value">4.1/5.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="performance-badge">Strong Coordination</span>
+                    </div>
                 </div>
             </div>
-            <div class="objective">
-                <div class="objective-title">Coordinated ICT capacity building programs with partners</div>
+
+            <div class="objective-card">
+                <h3 class="objective-title">Coordinated with the training and development division and other ICT partners on ICT capacity building to promote the strategic use of ICT in education governance and integration in the teaching and learning process</h3>
                 <div class="objective-meta">
-                    <span class="meta-item">Weight: <span class="meta-value">10%</span></span>
-                    <span class="meta-item">Rating: <span class="meta-value">4.5/5.0</span></span>
-                    <span class="badge-success">Excellent Partnership</span>
+                    <div class="meta-item">
+                        <span class="meta-label">Weight:</span>
+                        <span class="meta-value">10%</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Rating:</span>
+                        <span class="meta-value">4.5/5.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="performance-badge">Excellent Partnership</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Infrastructure Gallery -->
+        <section class="gallery-section">
+            <h2 class="gallery-title">Infrastructure & Monitoring Systems</h2>
+            <p class="gallery-subtitle">Real-world implementation and maintenance of ICT infrastructure at Mati City Division Office</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="server-rack-1.jpg" alt="Server Rack Infrastructure">
+                    <div class="gallery-caption">Network Infrastructure Management</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="server-rack-2.jpg" alt="Server Room Setup">
+                    <div class="gallery-caption">Server Room Configuration</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="monitoring-system-1.jpg" alt="Monitoring System">
+                    <div class="gallery-caption">Real-time Monitoring System</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="monitoring-system-2.jpg" alt="Security Monitoring">
+                    <div class="gallery-caption">Security & Surveillance Integration</div>
+                </div>
+            </div>
+        </section>
 
         <footer>
-            <p><strong>Department of Education</strong> | Division of Mati City</p>
-            <p style="margin-top: 10px;">Rated by: <strong>Elma A. Prudente, CESE</strong> (OIC-ASDS)</p>
-            <p>Approved by: <strong>Winnie E. Batoon, CESO V</strong> (SDS)</p>
+            <p class="footer-text">
+                <span class="footer-org">Department of Education</span> | Division of Mati City
+            </p>
+            <p class="footer-text">
+                Rated by: <strong>Elma A. Prudente, CESE</strong> (OIC-Assistant Schools Division Superintendent)
+            </p>
+            <p class="footer-text">
+                Approved by: <strong>Winnie E. Batoon, CESO V</strong> (Schools Division Superintendent)
+            </p>
         </footer>
     </div>
 </body>
